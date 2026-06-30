@@ -1,0 +1,55 @@
+{
+  "name": "pixel-cat",
+  "version": "1.0.0",
+  "description": "A pixel cat that lives on your desktop",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:all": "electron-builder --win --mac"
+  },
+  "keywords": [],
+  "author": "you",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^38.1.2",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "uiohook-napi": "^1.5.5"
+  },
+  "build": {
+    "appId": "com.yourname.pixelcat",
+    "productName": "Pixel Cat",
+    "files": [
+      "main.js",
+      "renderer.js",
+      "index.html",
+      "sprites/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "sprites",
+        "to": "sprites",
+        "filter": ["**/*.png"]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "sprites/idle.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "sprites/idle.png",
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "hardenedRuntime": true
+    },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": "sprites/idle.png"
+    }
+  }
+}
